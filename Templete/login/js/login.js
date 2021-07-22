@@ -15,16 +15,17 @@ async function login(event) {
   console.log(email, password);
 
   try {
-    const res = await axios.post('https://api.marktube.tv/v1/me', {
+    const res = await axios.post('http://localhost:8080/user/login', {
       email,
       password,
     });
     const { token } = res.data;
     if (token === undefined) {
+      alert('no token returned');
       return;
     }
     localStorage.setItem('token', token);
-    location = '/';
+    location = './index.html';
   } catch (error) {
     const data = error.response.data;
     if (data) {
@@ -50,7 +51,7 @@ async function main() {
   // 토큰 체크
   const token = getToken();
   if (token !== null) {
-    location.assign('/');
+    location.assign('./index.html');
     return;
   }
 }

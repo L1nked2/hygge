@@ -4,7 +4,7 @@ function getToken() {
 
 async function getUserByToken(token) {
   try {
-    const res = await axios.get('https://api.marktube.tv/v1/me', {
+    const res = await axios.get('http://localhost:8080/user/token', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,11 +19,11 @@ async function getUserByToken(token) {
 async function logout() {
   const token = getToken();
   if (token === null) {
-    location.assign('/login');
+    location.assign('./login.html');
     return;
   }
   try {
-    await axios.delete('https://api.marktube.tv/v1/me', {
+    await axios.delete('http://localhost:8080/user/token', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -32,13 +32,13 @@ async function logout() {
     console.log('logout error', error);
   } finally {
     localStorage.clear();
-    location.assign('/login');
+    location.assign('./login.html');
   }
 }
 
 async function getBooks(token) {
   try {
-    const res = await axios.get('https://api.marktube.tv/v1/book', {
+    const res = await axios.get('http://localhost:8080/book', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,10 +53,10 @@ async function getBooks(token) {
 async function deleteBook(bookId) {
   const token = getToken();
   if (token === null) {
-    location.assign('/login');
+    location.assign('./login.html');
     return;
   }
-  await axios.delete(`https://api.marktube.tv/v1/book/${bookId}`, {
+  await axios.delete(`http://localhost:8080/book/${bookId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -126,7 +126,7 @@ async function main() {
   // 토큰 체크
   const token = getToken();
   if (token === null) {
-    location.assign('/login');
+    location.assign('./login.html');
     return;
   }
 
@@ -134,7 +134,7 @@ async function main() {
   const user = await getUserByToken(token);
   if (user === null) {
     localStorage.clear();
-    location.assign('/login');
+    location.assign('./login.html');
     return;
   }
 

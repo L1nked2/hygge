@@ -4,7 +4,7 @@ function getToken() {
 
 async function getUserByToken(token) {
   try {
-    const res = await axios.get('https://api.marktube.tv/v1/me', {
+    const res = await axios.get('http://localhost:8080/login', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -43,7 +43,7 @@ async function save(event) {
 
   try {
     await axios.post(
-      'https://api.marktube.tv/v1/book',
+      'http://localhost:8080/book',
       {
         title,
         message,
@@ -83,7 +83,7 @@ async function main() {
   const user = await getUserByToken(token);
   if (user === null) {
     localStorage.clear();
-    location.href = '/login';
+    //location.href = '/login';
     return;
   }
 }

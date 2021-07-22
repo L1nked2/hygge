@@ -4,7 +4,7 @@ function getToken() {
 
 async function getUserByToken(token) {
   try {
-    const res = await axios.get('https://api.marktube.tv/v1/me', {
+    const res = await axios.get('http://localhost:8080/login', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,7 +23,7 @@ async function logout() {
     return;
   }
   try {
-    await axios.delete('https://api.marktube.tv/v1/me', {
+    await axios.delete('http://localhost:8080/login', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -43,7 +43,7 @@ async function getBook(bookId) {
     return null;
   }
   try {
-    const res = await axios.get(`https://api.marktube.tv/v1/book/${bookId}`, {
+    const res = await axios.get(`http://localhost:8080/book/${bookId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -61,7 +61,7 @@ async function deleteBook(bookId) {
     location = '/login';
     return;
   }
-  await axios.delete(`https://api.marktube.tv/v1/book/${bookId}`, {
+  await axios.delete(`http://localhost:8080/book/${bookId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

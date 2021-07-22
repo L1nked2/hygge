@@ -10,7 +10,7 @@ const model = (() => {
 
   // 몽고디비 앱 엑세스 주소
   mongoose.connect(
-    `mongodb+srv://fastcampus:비밀번호@cluster0.ismq4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    `mongodb+srv://l1nked23:lee990801@cluster0.prmcw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true }
   );
 

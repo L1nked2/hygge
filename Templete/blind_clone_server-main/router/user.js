@@ -49,12 +49,11 @@ router.post("/user/login", async (req, res) => {
 
 // 사용자 추가
 router.post("/user/create", async (req, res) => {
-  const { nickname, company, email, password } = req.body;
+  const { nickname, email, password } = req.body;
   const newUser = await User({
-    email,
     nickname,
+    email,
     password,
-    company,
   }).save();
 
   res.send(newUser._id ? true : false);
